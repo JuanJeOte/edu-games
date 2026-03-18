@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4F46E5;
+  --color-secondary: #F59E0B;
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+  --color-sky-light: #E0F2FE;
+  --color-pink-fun: #EC4899;
+  --color-lime-fun: #84CC16;
+  --color-orange-fun: #F97316;
+  --color-purple-fun: #A855F7;
+  --color-cyan-fun: #06B6D4;
+  --font-family-display: 'Nunito', 'Comic Neue', system-ui, sans-serif;
+  --font-family-body: 'Nunito', system-ui, sans-serif;
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-family-body);
+  }
+
+  body {
+    background: linear-gradient(180deg, #E0F2FE 0%, #FFFFFF 100%);
+    min-height: 100vh;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+}
