@@ -48,14 +48,14 @@ export default function SyllableBuilder() {
 
   const isSyllableCompleted = (consonant: string, vowel: string): boolean => {
     const groups = SYLLABLE_GROUPS[consonant] ?? [];
-    const syllableData = groups.find((s) => s.vowel === vowel);
+    const syllableData = groups.find((s) => s.vowel === vowel.toLowerCase());
     if (!syllableData) return false;
     return progress.syllablesCompleted?.includes(syllableData.syllable) ?? false;
   };
 
   const getExampleData = (consonant: string, vowel: string) => {
     const groups = SYLLABLE_GROUPS[consonant] ?? [];
-    return groups.find((s) => s.vowel === vowel) ?? null;
+    return groups.find((s) => s.vowel === vowel.toLowerCase()) ?? null;
   };
 
   const handleVowelTap = async (vowel: string) => {
@@ -176,7 +176,7 @@ export default function SyllableBuilder() {
                       }
                     `}
                   >
-                    {c.letter}
+                    {c.letter.toUpperCase()}
                     {allDone && (
                       <span className="text-xs mt-0.5">⭐</span>
                     )}
@@ -224,7 +224,7 @@ export default function SyllableBuilder() {
                       animate={{ scale: 1, opacity: 1 }}
                     >
                       <span className="text-6xl font-extrabold text-white">
-                        {selectedConsonant}
+                        {selectedConsonant.toUpperCase()}
                       </span>
                     </motion.div>
                   )}
@@ -240,7 +240,7 @@ export default function SyllableBuilder() {
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
                           >
                             <span className="text-4xl font-extrabold text-white">
-                              {selectedConsonant}
+                              {selectedConsonant.toUpperCase()}
                             </span>
                           </motion.div>
                           <motion.div
@@ -328,7 +328,7 @@ export default function SyllableBuilder() {
                     const completed = isSyllableCompleted(selectedConsonant, vowel);
                     const isActive = activeVowel === vowel && mergeState !== 'idle';
                     const syllableExists = (SYLLABLE_GROUPS[selectedConsonant] ?? []).some(
-                      (s) => s.vowel === vowel
+                      (s) => s.vowel === vowel.toLowerCase()
                     );
 
                     return (
