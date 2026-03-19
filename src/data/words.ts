@@ -21,8 +21,8 @@ export const WORDS: WordData[] = [
     difficulty: 1,
   },
   {
-    word: 'mesa',
-    syllables: ['me', 'sa'],
+    word: 'silla',
+    syllables: ['si', 'lla'],
     emoji: '🪑',
     difficulty: 1,
   },
