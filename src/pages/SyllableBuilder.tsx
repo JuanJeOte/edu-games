@@ -120,16 +120,16 @@ export default function SyllableBuilder() {
       : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 flex flex-col items-center px-3 py-4 sm:px-4 sm:py-6 select-none">
+    <div className="flex flex-col items-center py-3 px-1 select-none">
       {/* Header */}
       <motion.h1
-        className="text-2xl sm:text-3xl font-extrabold text-indigo-700 mb-2 text-center"
-        initial={{ opacity: 0, y: -20 }}
+        className="text-xl font-extrabold text-indigo-700 mb-1 text-center"
+        initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
       >
         Constructor de Sílabas
       </motion.h1>
-      <p className="text-indigo-400 text-sm mb-6 text-center">
+      <p className="text-indigo-400 text-xs mb-3 text-center">
         Elige una consonante y forma sílabas
       </p>
 
@@ -151,8 +151,8 @@ export default function SyllableBuilder() {
       ) : (
         <>
           {/* Consonant row */}
-          <div className="w-full max-w-2xl mb-4 sm:mb-6">
-            <div className="flex gap-3 overflow-x-auto pb-2 px-1 scrollbar-hide">
+          <div className="w-full mb-3">
+            <div className="flex gap-2 overflow-x-auto pb-2 px-1 scrollbar-hide">
               {exploredConsonants.map((c) => {
                 const completedCount = getCompletedSyllablesForConsonant(c.letter).length;
                 const totalCount = (SYLLABLE_GROUPS[c.letter] ?? []).length;
@@ -165,7 +165,7 @@ export default function SyllableBuilder() {
                     onClick={() => handleConsonantSelect(c.letter)}
                     whileTap={{ scale: 0.92 }}
                     className={`
-                      flex-shrink-0 w-16 h-16 rounded-2xl font-extrabold text-2xl
+                      flex-shrink-0 w-14 h-14 rounded-2xl font-extrabold text-xl
                       flex flex-col items-center justify-center relative
                       shadow-md transition-all duration-150
                       ${isSelected
@@ -209,21 +209,21 @@ export default function SyllableBuilder() {
             ) : (
               <motion.div
                 key={selectedConsonant}
-                className="w-full max-w-sm md:max-w-md flex flex-col items-center gap-5 sm:gap-6"
+                className="w-full flex flex-col items-center gap-3 sm:gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
               >
                 {/* Merge animation area */}
-                <div className="relative w-full h-36 flex items-center justify-center overflow-visible">
+                <div className="relative w-full h-28 flex items-center justify-center overflow-visible">
                   {mergeState === 'idle' && (
                     <motion.div
                       key="consonant-idle"
-                      className="w-28 h-28 rounded-3xl bg-indigo-500 shadow-xl flex items-center justify-center"
+                      className="w-24 h-24 rounded-3xl bg-indigo-500 shadow-xl flex items-center justify-center"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                     >
-                      <span className="text-6xl font-extrabold text-white">
+                      <span className="text-5xl font-extrabold text-white">
                         {selectedConsonant.toUpperCase()}
                       </span>
                     </motion.div>
@@ -234,22 +234,22 @@ export default function SyllableBuilder() {
                       {mergeState === 'merging' && (
                         <>
                           <motion.div
-                            className="absolute w-20 h-20 rounded-2xl bg-indigo-500 flex items-center justify-center shadow-lg"
+                            className="absolute w-16 h-16 rounded-2xl bg-indigo-500 flex items-center justify-center shadow-lg"
                             initial={{ x: -80 }}
                             animate={{ x: -10 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
                           >
-                            <span className="text-4xl font-extrabold text-white">
+                            <span className="text-3xl font-extrabold text-white">
                               {selectedConsonant.toUpperCase()}
                             </span>
                           </motion.div>
                           <motion.div
-                            className={`absolute w-20 h-20 rounded-full flex items-center justify-center shadow-lg ${VOWEL_COLORS[activeVowel].split(' ')[0]}`}
+                            className={`absolute w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${VOWEL_COLORS[activeVowel].split(' ')[0]}`}
                             initial={{ x: 80 }}
                             animate={{ x: 10 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
                           >
-                            <span className="text-4xl font-extrabold text-white">
+                            <span className="text-3xl font-extrabold text-white">
                               {activeVowel}
                             </span>
                           </motion.div>
@@ -259,12 +259,12 @@ export default function SyllableBuilder() {
                       {(mergeState === 'showing' || mergeState === 'celebrating') && (
                         <motion.div
                           key="syllable-display"
-                          className="w-40 h-36 rounded-3xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-2xl"
+                          className="w-32 h-28 rounded-3xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center shadow-2xl"
                           initial={{ scale: 0.4, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ type: 'spring', stiffness: 300, damping: 18 }}
                         >
-                          <span className="text-7xl font-extrabold text-white tracking-wide uppercase">
+                          <span className="text-5xl font-extrabold text-white tracking-wide uppercase">
                             {formedSyllable}
                           </span>
                         </motion.div>
@@ -277,14 +277,14 @@ export default function SyllableBuilder() {
                 <AnimatePresence>
                   {mergeState === 'showing' && exampleData && (
                     <motion.div
-                      className="flex flex-col items-center gap-1"
-                      initial={{ opacity: 0, y: 10 }}
+                      className="flex items-center gap-2"
+                      initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      <span className="text-6xl">{exampleData.exampleEmoji}</span>
-                      <span className="text-2xl font-bold text-indigo-700 capitalize">
+                      <span className="text-4xl">{exampleData.exampleEmoji}</span>
+                      <span className="text-xl font-bold text-indigo-700 capitalize">
                         {exampleData.exampleWord}
                       </span>
                     </motion.div>
@@ -323,7 +323,7 @@ export default function SyllableBuilder() {
                 </AnimatePresence>
 
                 {/* Vowel buttons */}
-                <div className="grid grid-cols-5 gap-3 w-full mt-2">
+                <div className="grid grid-cols-5 gap-2 w-full mt-1">
                   {VOWELS.map((vowel) => {
                     const completed = isSyllableCompleted(selectedConsonant, vowel);
                     const isActive = activeVowel === vowel && mergeState !== 'idle';

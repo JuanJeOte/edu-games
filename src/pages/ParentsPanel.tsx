@@ -201,7 +201,7 @@ export default function ParentsPanel() {
         : 'Vuelve a ingresar el PIN para confirmar.';
 
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+      <div className="flex items-center justify-center min-h-[calc(100dvh-9rem)] p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -241,37 +241,32 @@ export default function ParentsPanel() {
 
   // Authenticated dashboard
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="pb-2">
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-lg font-bold text-slate-800">Panel de Padres</h1>
-              <p className="text-xs text-slate-400">Seguimiento del progreso</p>
-            </div>
-          </div>
-          <Link
-            to="/"
-            className="flex items-center gap-1 text-slate-500 hover:text-slate-800 transition-colors text-sm font-medium"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      <div className="flex items-center justify-between mb-1 py-1">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
+            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
-            Volver
-          </Link>
+          </div>
+          <h1 className="text-base font-bold text-slate-800">Panel de Padres</h1>
         </div>
-      </header>
+        <Link
+          to="/"
+          className="flex items-center gap-1 text-slate-500 hover:text-slate-800 transition-colors text-sm font-medium"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Volver
+        </Link>
+      </div>
 
       {/* Tabs */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="flex gap-1">
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 mb-4">
+        <div className="">
+          <div className="flex gap-0 overflow-x-auto">
             {([
               { key: 'stats', label: 'Resumen' },
               { key: 'letters', label: 'Letras' },
@@ -281,7 +276,7 @@ export default function ParentsPanel() {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                className={`flex-1 px-2 py-2.5 text-xs font-semibold border-b-2 transition-colors whitespace-nowrap ${
                   activeTab === tab.key
                     ? 'border-slate-800 text-slate-800'
                     : 'border-transparent text-slate-500 hover:text-slate-700'
@@ -294,7 +289,7 @@ export default function ParentsPanel() {
         </div>
       </div>
 
-      <main className="max-w-4xl mx-auto px-4 py-6">
+      <div className="space-y-4">
 
         {/* STATS TAB */}
         {activeTab === 'stats' && (
@@ -344,7 +339,7 @@ export default function ParentsPanel() {
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4">
-              <div className="grid grid-cols-9 gap-2">
+              <div className="grid grid-cols-7 sm:grid-cols-9 gap-2">
                 {ALPHABET.map((letter) => {
                   const data = lettersData[letter] as any;
                   const level = data?.masteryLevel ?? 0;
@@ -573,7 +568,7 @@ export default function ParentsPanel() {
             </div>
           </motion.div>
         )}
-      </main>
+      </div>
 
       {/* Change PIN Modal */}
       {showChangePinModal && (

@@ -157,12 +157,12 @@ export default function WordBuilder() {
 
   if (allDone) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-purple-100 to-pink-100 flex flex-col items-center justify-center px-4 py-8">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-9rem)] py-4">
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-          className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm md:max-w-md w-full text-center"
+          className="bg-white rounded-3xl shadow-2xl p-5 sm:p-7 max-w-sm w-full text-center"
         >
           <div className="text-7xl mb-4">🏆</div>
           <h2 className="text-3xl font-extrabold text-purple-700 mb-2">
@@ -200,14 +200,14 @@ export default function WordBuilder() {
 
   if (!currentWord) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-purple-50">
+      <div className="flex items-center justify-center min-h-[calc(100dvh-9rem)]">
         <p className="text-gray-500 text-lg">Cargando palabras...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 via-purple-50 to-pink-100 flex flex-col items-center px-3 py-4 sm:px-4 sm:py-6 relative overflow-hidden">
+    <div className="flex flex-col items-center py-3 px-1 relative overflow-hidden">
 
       {/* Confetti stars */}
       <AnimatePresence>
@@ -233,7 +233,7 @@ export default function WordBuilder() {
       </AnimatePresence>
 
       {/* Header */}
-      <div className="w-full max-w-md md:max-w-lg flex items-center justify-between mb-3 sm:mb-4">
+      <div className="w-full flex items-center justify-between mb-2">
         <div className="bg-white/70 backdrop-blur rounded-2xl px-4 py-2 shadow">
           <p className="text-purple-700 font-bold text-sm">
             Palabra{' '}
@@ -249,9 +249,9 @@ export default function WordBuilder() {
       </div>
 
       {/* Progress bar */}
-      <div className="w-full max-w-md md:max-w-lg bg-white/50 rounded-full h-3 mb-4 sm:mb-6 shadow-inner">
+      <div className="w-full bg-white/50 rounded-full h-2.5 mb-3 shadow-inner">
         <motion.div
-          className="h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+          className="h-2.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
           animate={{ width: `${((wordIndex) / availableWords.length) * 100}%` }}
           transition={{ duration: 0.5 }}
           style={{ minWidth: '8px' }}
@@ -264,15 +264,15 @@ export default function WordBuilder() {
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 200, damping: 14 }}
-        className="mb-6"
+        className="mb-2"
       >
-        <div className="text-8xl sm:text-9xl leading-none select-none drop-shadow-lg">
+        <div className="text-6xl leading-none select-none drop-shadow-lg">
           {currentWord.emoji}
         </div>
       </motion.div>
 
       {/* Difficulty badge */}
-      <div className="mb-4">
+      <div className="mb-2">
         <span
           className={`text-xs font-semibold px-3 py-1 rounded-full ${
             currentWord.difficulty === 1
@@ -287,7 +287,7 @@ export default function WordBuilder() {
       </div>
 
       {/* Syllable slots */}
-      <div className="flex gap-3 mb-8 flex-wrap justify-center">
+      <div className="flex gap-2.5 mb-4 flex-wrap justify-center">
         {currentWord.syllables.map((_, slotIdx) => {
           const filled = filledSlots[slotIdx];
           return (
@@ -332,7 +332,7 @@ export default function WordBuilder() {
 
       {/* Syllable buttons */}
       {!celebrating && (
-        <div className="flex flex-wrap gap-3 justify-center max-w-md md:max-w-lg mb-6 sm:mb-8">
+        <div className="flex flex-wrap gap-2.5 justify-center mb-4">
           {buttonPool.map((btn) => (
             <motion.button
               key={btn.id}
@@ -344,7 +344,7 @@ export default function WordBuilder() {
                   : { x: 0 }
               }
               transition={{ duration: 0.5 }}
-              className={`min-w-[64px] h-16 px-5 rounded-2xl text-2xl font-extrabold shadow-lg transition-all select-none
+              className={`min-w-[60px] h-14 px-4 rounded-2xl text-xl font-extrabold shadow-lg transition-all select-none
                 ${
                   btn.used
                     ? 'bg-gray-100 text-gray-300 border-2 border-gray-200 cursor-not-allowed opacity-40'

@@ -233,7 +233,7 @@ export default function SoundMatch() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 flex flex-col items-center justify-center p-3 sm:p-4 select-none">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-9rem)] py-3 select-none">
       <AnimatePresence mode="wait">
         {/* SUMMARY SCREEN */}
         {gameState === 'summary' && (
@@ -243,7 +243,7 @@ export default function SoundMatch() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-            className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 max-w-sm md:max-w-md w-full text-center"
+            className="bg-white rounded-3xl shadow-xl p-5 sm:p-7 max-w-sm w-full text-center"
           >
             <div className="text-6xl mb-4">🏆</div>
             <h2 className="text-3xl font-extrabold text-indigo-700 mb-2">
@@ -287,7 +287,7 @@ export default function SoundMatch() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="w-full max-w-sm md:max-w-md flex flex-col items-center gap-5 sm:gap-6"
+            className="w-full max-w-sm flex flex-col items-center gap-3 sm:gap-4"
           >
             {/* Header */}
             <div className="w-full flex items-center justify-between px-1">
@@ -320,7 +320,7 @@ export default function SoundMatch() {
               key={`prompt-${roundIndex}`}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="bg-white rounded-3xl shadow-lg px-8 py-6 text-center w-full"
+              className="bg-white rounded-3xl shadow-lg px-5 py-4 text-center w-full"
             >
               <p className="text-lg font-semibold text-gray-500 mb-3">
                 ¿Qué letra hace este sonido?
@@ -352,7 +352,7 @@ export default function SoundMatch() {
                   gameState === 'feedback' && isCorrect === false && isTarget;
 
                 let buttonClass =
-                  'flex flex-col items-center justify-center rounded-3xl py-5 px-2 text-center shadow-md font-extrabold text-3xl transition-colors ';
+                  'flex flex-col items-center justify-center rounded-3xl py-3 px-2 text-center shadow-md font-extrabold text-3xl transition-colors ';
 
                 if (gameState === 'feedback') {
                   if (isSelected && isCorrect) {
