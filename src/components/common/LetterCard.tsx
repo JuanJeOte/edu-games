@@ -5,13 +5,14 @@ interface LetterCardProps {
   color: string // hex color
   explored?: boolean
   onClick?: () => void
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'auto'
 }
 
 const sizeClasses = {
   sm: { card: 'w-16 h-16', letter: 'text-2xl', check: 'text-sm' },
   md: { card: 'w-24 h-24', letter: 'text-4xl', check: 'text-base' },
   lg: { card: 'w-32 h-32', letter: 'text-5xl', check: 'text-xl' },
+  auto: { card: 'w-full aspect-square min-h-[48px]', letter: 'text-xl sm:text-2xl', check: 'text-xs' },
 }
 
 export default function LetterCard({
