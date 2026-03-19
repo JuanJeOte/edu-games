@@ -6,7 +6,10 @@ import { useProgress } from '@/hooks/useProgress';
 import LetterCard from '@/components/common/LetterCard';
 import type { LetterData } from '@/types';
 
-const sortedLetters = [...LETTERS].sort((a, b) => a.teachOrder - b.teachOrder);
+// Sorted alphabetically (Spanish locale: a,b,c,...,ñ,...,z)
+const sortedLetters = [...LETTERS].sort((a, b) =>
+  a.letter.localeCompare(b.letter, 'es')
+);
 
 export default function LetterExplorer() {
   const [uppercase, setUppercase] = useState(true);
@@ -38,29 +41,28 @@ export default function LetterExplorer() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 px-2 py-4 sm:px-4 sm:py-6">
-      <div className="mx-auto max-w-2xl">
+    <div className="py-3 px-1">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-indigo-700 drop-shadow-sm">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-extrabold text-indigo-700">
           Explorador de Letras
         </h1>
         <button
           onClick={() => setUppercase((u) => !u)}
-          className="px-4 py-2 rounded-full bg-yellow-400 hover:bg-yellow-500 active:scale-95 transition-transform font-bold text-yellow-900 shadow-md text-sm"
+          className="px-4 py-1.5 rounded-full bg-yellow-400 hover:bg-yellow-500 active:scale-95 transition-transform font-bold text-yellow-900 shadow-md text-sm"
         >
           {uppercase ? 'abc' : 'ABC'}
         </button>
       </div>
 
-      {/* Letter grid */}
-      <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 sm:gap-3">
+      {/* Letter grid — 6 cols on mobile, 7 on sm+ */}
+      <div className="grid grid-cols-6 sm:grid-cols-7 gap-2">
         {sortedLetters.map((letter) => {
           const isExplored = progress.letters?.[letter.letter]?.explored ?? false;
           return (
             <motion.div
               key={letter.letter}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.88 }}
               whileHover={{ scale: 1.08 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
@@ -69,12 +71,12 @@ export default function LetterExplorer() {
                 color={letter.color}
                 explored={isExplored}
                 onClick={() => handleLetterTap(letter)}
+                size="auto"
               />
             </motion.div>
           );
         })}
       </div>
-      </div>{/* end max-w-2xl */}
 
       {/* Detail modal */}
       <AnimatePresence>
