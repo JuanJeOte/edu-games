@@ -38,10 +38,11 @@ export default function LetterExplorer() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 px-4 py-6">
+    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 px-2 py-4 sm:px-4 sm:py-6">
+      <div className="mx-auto max-w-2xl">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-extrabold text-indigo-700 drop-shadow-sm">
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-indigo-700 drop-shadow-sm">
           Explorador de Letras
         </h1>
         <button
@@ -53,7 +54,7 @@ export default function LetterExplorer() {
       </div>
 
       {/* Letter grid */}
-      <div className="grid grid-cols-5 sm:grid-cols-7 gap-3">
+      <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 sm:gap-3">
         {sortedLetters.map((letter) => {
           const isExplored = progress.letters?.[letter.letter]?.explored ?? false;
           return (
@@ -73,6 +74,7 @@ export default function LetterExplorer() {
           );
         })}
       </div>
+      </div>{/* end max-w-2xl */}
 
       {/* Detail modal */}
       <AnimatePresence>
@@ -98,7 +100,7 @@ export default function LetterExplorer() {
               className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
             >
               <div
-                className="pointer-events-auto relative bg-white rounded-3xl shadow-2xl p-8 mx-4 w-full max-w-xs flex flex-col items-center gap-4"
+                className="pointer-events-auto relative bg-white rounded-3xl shadow-2xl p-6 sm:p-8 mx-4 w-full max-w-xs sm:max-w-sm flex flex-col items-center gap-4"
                 style={{ borderTop: `6px solid ${selectedLetter.color}` }}
               >
                 {/* Close button */}
@@ -119,11 +121,13 @@ export default function LetterExplorer() {
                 </div>
 
                 {/* Emoji / image */}
-                <img
-                  src={selectedLetter.imagePath}
-                  alt={selectedLetter.exampleWord}
-                  className="w-24 h-24 object-contain drop-shadow"
-                />
+                <span
+                  className="text-8xl leading-none"
+                  role="img"
+                  aria-label={selectedLetter.exampleWord}
+                >
+                  {selectedLetter.imagePath}
+                </span>
 
                 {/* Example word */}
                 <p className="text-2xl font-bold text-gray-700 capitalize">

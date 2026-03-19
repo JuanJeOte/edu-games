@@ -120,10 +120,10 @@ export default function SyllableBuilder() {
       : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 flex flex-col items-center px-4 py-6 select-none">
+    <div className="min-h-screen bg-gradient-to-b from-sky-100 to-indigo-100 flex flex-col items-center px-3 py-4 sm:px-4 sm:py-6 select-none">
       {/* Header */}
       <motion.h1
-        className="text-3xl font-extrabold text-indigo-700 mb-2 text-center"
+        className="text-2xl sm:text-3xl font-extrabold text-indigo-700 mb-2 text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -151,7 +151,7 @@ export default function SyllableBuilder() {
       ) : (
         <>
           {/* Consonant row */}
-          <div className="w-full max-w-2xl mb-6">
+          <div className="w-full max-w-2xl mb-4 sm:mb-6">
             <div className="flex gap-3 overflow-x-auto pb-2 px-1 scrollbar-hide">
               {exploredConsonants.map((c) => {
                 const completedCount = getCompletedSyllablesForConsonant(c.letter).length;
@@ -209,7 +209,7 @@ export default function SyllableBuilder() {
             ) : (
               <motion.div
                 key={selectedConsonant}
-                className="w-full max-w-sm flex flex-col items-center gap-6"
+                className="w-full max-w-sm md:max-w-md flex flex-col items-center gap-5 sm:gap-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}

@@ -162,7 +162,7 @@ export default function WordBuilder() {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-          className="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center"
+          className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm md:max-w-md w-full text-center"
         >
           <div className="text-7xl mb-4">🏆</div>
           <h2 className="text-3xl font-extrabold text-purple-700 mb-2">
@@ -207,7 +207,7 @@ export default function WordBuilder() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 via-purple-50 to-pink-100 flex flex-col items-center px-4 py-6 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 via-purple-50 to-pink-100 flex flex-col items-center px-3 py-4 sm:px-4 sm:py-6 relative overflow-hidden">
 
       {/* Confetti stars */}
       <AnimatePresence>
@@ -233,7 +233,7 @@ export default function WordBuilder() {
       </AnimatePresence>
 
       {/* Header */}
-      <div className="w-full max-w-md flex items-center justify-between mb-4">
+      <div className="w-full max-w-md md:max-w-lg flex items-center justify-between mb-3 sm:mb-4">
         <div className="bg-white/70 backdrop-blur rounded-2xl px-4 py-2 shadow">
           <p className="text-purple-700 font-bold text-sm">
             Palabra{' '}
@@ -249,7 +249,7 @@ export default function WordBuilder() {
       </div>
 
       {/* Progress bar */}
-      <div className="w-full max-w-md bg-white/50 rounded-full h-3 mb-6 shadow-inner">
+      <div className="w-full max-w-md md:max-w-lg bg-white/50 rounded-full h-3 mb-4 sm:mb-6 shadow-inner">
         <motion.div
           className="h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
           animate={{ width: `${((wordIndex) / availableWords.length) * 100}%` }}
@@ -266,7 +266,7 @@ export default function WordBuilder() {
         transition={{ type: 'spring', stiffness: 200, damping: 14 }}
         className="mb-6"
       >
-        <div className="text-9xl leading-none select-none drop-shadow-lg">
+        <div className="text-8xl sm:text-9xl leading-none select-none drop-shadow-lg">
           {currentWord.emoji}
         </div>
       </motion.div>
@@ -332,7 +332,7 @@ export default function WordBuilder() {
 
       {/* Syllable buttons */}
       {!celebrating && (
-        <div className="flex flex-wrap gap-3 justify-center max-w-md mb-8">
+        <div className="flex flex-wrap gap-3 justify-center max-w-md md:max-w-lg mb-6 sm:mb-8">
           {buttonPool.map((btn) => (
             <motion.button
               key={btn.id}

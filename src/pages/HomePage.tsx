@@ -1,6 +1,9 @@
 import { useProgress } from '@/hooks/useProgress';
+import { ACHIEVEMENTS } from '@/data/achievements';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
+
+const ACHIEVEMENT_MAP = Object.fromEntries(ACHIEVEMENTS.map((a) => [a.id, a]));
 
 const activities = [
   {
@@ -60,7 +63,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100 via-blue-50 to-indigo-100 px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-sky-100 via-blue-50 to-indigo-100 px-2 py-6 sm:px-4 sm:py-8">
       <div className="mx-auto max-w-2xl">
 
         {/* Header greeting */}
@@ -93,15 +96,15 @@ export default function HomePage() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="mb-8 flex items-center justify-center gap-4"
+          className="mb-8 flex flex-wrap items-center justify-center gap-3"
         >
           {/* Total stars */}
-          <div className="flex items-center gap-2 rounded-2xl bg-yellow-400 px-5 py-3 shadow-lg shadow-yellow-200">
-            <span className="text-3xl">⭐</span>
-            <span className="text-2xl font-extrabold text-yellow-900">
+          <div className="flex items-center gap-2 rounded-2xl bg-yellow-400 px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg shadow-yellow-200">
+            <span className="text-2xl sm:text-3xl">⭐</span>
+            <span className="text-xl sm:text-2xl font-extrabold text-yellow-900">
               {progress.totalStars}
             </span>
-            <span className="text-sm font-semibold text-yellow-800">
+            <span className="text-xs sm:text-sm font-semibold text-yellow-800">
               estrellas
             </span>
           </div>
@@ -112,10 +115,10 @@ export default function HomePage() {
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.35, duration: 0.4 }}
-              className="flex items-center gap-2 rounded-2xl bg-orange-400 px-5 py-3 shadow-lg shadow-orange-200"
+              className="flex items-center gap-2 rounded-2xl bg-orange-400 px-4 py-2.5 sm:px-5 sm:py-3 shadow-lg shadow-orange-200"
             >
               <span className="text-2xl">🔥</span>
-              <span className="text-lg font-extrabold text-orange-900">
+              <span className="text-base sm:text-lg font-extrabold text-orange-900">
                 {progress.currentStreak} días seguidos
               </span>
             </motion.div>
@@ -123,7 +126,7 @@ export default function HomePage() {
         </motion.div>
 
         {/* Activity cards */}
-        <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mb-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
           {activities.map((activity, index) => {
             const prog = cardProgress[index];
             const progressPercent =
@@ -207,23 +210,27 @@ export default function HomePage() {
 
           {progress.badges.length > 0 ? (
             <div className="flex flex-wrap gap-3">
-              {progress.badges.map((badge, index) => (
-                <motion.div
-                  key={`${badge}-${index}`}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    delay: 0.7 + index * 0.08,
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 20,
-                  }}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 shadow-md shadow-amber-200 text-2xl"
-                  title={badge}
-                >
-                  {badge}
-                </motion.div>
-              ))}
+              {progress.badges.map((badgeId, index) => {
+                const achievement = ACHIEVEMENT_MAP[badgeId];
+                if (!achievement) return null;
+                return (
+                  <motion.div
+                    key={`${badgeId}-${index}`}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.7 + index * 0.08,
+                      type: 'spring',
+                      stiffness: 260,
+                      damping: 20,
+                    }}
+                    className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 shadow-md shadow-amber-200 text-2xl"
+                    title={achievement.name}
+                  >
+                    {achievement.emoji}
+                  </motion.div>
+                );
+              })}
             </div>
           ) : (
             <div className="flex flex-col items-center gap-2 py-3 text-center">

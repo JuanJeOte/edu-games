@@ -13,7 +13,7 @@ export default function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-t border-gray-100">
-      <ul className="flex items-stretch justify-around max-w-screen-sm mx-auto">
+      <ul className="flex items-stretch justify-around max-w-screen-sm md:max-w-2xl mx-auto">
         {tabs.map(({ label, emoji, route }) => {
           const isActive =
             route === '/' ? pathname === '/' : pathname.startsWith(route)

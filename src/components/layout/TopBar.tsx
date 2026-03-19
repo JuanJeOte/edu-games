@@ -17,7 +17,7 @@ export default function TopBar({ stars = 0 }: TopBarProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 h-16">
-      <div className="flex items-center justify-between h-full px-4 max-w-screen-sm mx-auto">
+      <div className="flex items-center justify-between h-full px-4 max-w-screen-sm md:max-w-2xl mx-auto">
         {/* Star counter */}
         <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 rounded-full px-3 py-1.5 min-w-[70px]">
           <span className="text-lg leading-none">⭐</span>
